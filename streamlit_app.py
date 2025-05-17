@@ -4,7 +4,6 @@ from sympy import symbols, Eq, solve
 from collections import defaultdict
 
 st.title("🧪 StoichiMath")
-st.write("Aplikasi ini membantu kamu untuk menghitung jumlah mol produk dan sisa reaktan berdasarkan persamaan reaksi kimia dan jumlah mol reaktan secara otomatis.")
 st.sidebar.title("Perhitungan Stoikiometeri")
 option = st.sidebar.selectbox(
     "Pilih opsi:", 
@@ -16,7 +15,7 @@ option = st.sidebar.selectbox(
         "perhitungan perbandingan mol",
     ] 
 ) 
-st.write(f"Kamu memilih: {option}")
+
 # Konten utama berubah sesuai pilihan di sidebar
 if option == "Perhitungan Mol":
     st.header("Perhitungan Mol")
