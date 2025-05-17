@@ -195,6 +195,6 @@ if option == "Perhitungan Yield":
 
 
 st.markdown("---")
-st.caption("🚀 Dibuat dengan ❤️ oleh Kelompok 11, StoichiMath")
+st.caption("🚀 Dibuat dengan ❤️ oleh Kelompok 11 | StoichiMath")
 
 
