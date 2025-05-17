@@ -9,7 +9,7 @@ st.sidebar.title("Perhitungan Stoikiometeri")
 option = st.sidebar.selectbox(
     "Pilih opsi:", 
     [
-        "Perhitungan Massa dan mol", 
+        "Perhitungan Mol", 
         "Perhitungan mol dari massa", 
         "perhitungan volume gas", 
         "perhitungan jumlah partikel dari mol", 
@@ -18,8 +18,8 @@ option = st.sidebar.selectbox(
 ) 
 st.write(f"Kamu memilih: {option}")
 # Konten utama berubah sesuai pilihan di sidebar
-if option == "Perhitungan Massa dan mol":
-    st.header("Perhitungan Massa dan mol")
+if option == "Perhitungan Mol":
+    st.header("Perhitungan Mol")
     massa = st.number_input("Masukkan massa (gram):", min_value=0.0)
     molar_mass = st.number_input("Masukkan massa molar (g/mol):", min_value=0.0)
     if massa > 0 and molar_mass > 0:
