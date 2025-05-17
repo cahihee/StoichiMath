@@ -34,6 +34,8 @@ if option == "Perhitungan Mol":
     else:
         st.error("Massa molar harus lebih besar dari nol.")
         
+def mol_ke_massa(mol, massa_molar):
+    return mol * massa_molar       
 if option == "Perhitungan Massa":
     st.header("Perhitungan Massa")
     st.write("Kamu bisa menghitung massa dari mol dan massa molar")
