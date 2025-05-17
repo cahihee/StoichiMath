@@ -2,6 +2,8 @@ import streamlit as st
 import re
 from sympy import symbols, Eq, solve
 from collections import defaultdict
+from streamlit_lottie import st_lottie
+import requests
 
 st.title("🧪 StoichiMath")
 st.sidebar.title("StoichiMath")
@@ -20,21 +22,27 @@ option = st.sidebar.selectbox(
 ) 
 
 # Konten utama berubah sesuai pilihan di sidebar
-# Fungsi untuk ambil JSON Lottie dari URL
-def load_lottieurl(https://assets2.lottiefiles.com/packages/lf20_8p4q8mpy.json):
-    r = requests.get(https://assets2.lottiefiles.com/packages/lf20_8p4q8mpy.json)
+def load_lottieurl(url):
+    r = requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
 
-# Contoh URL animasi Lottie gratis dari lottiefiles.com
+# URL animasi Lottie
 lottie_url = "https://assets2.lottiefiles.com/packages/lf20_8p4q8mpy.json"
-lottie_json = load_lottieurl(https://assets2.lottiefiles.com/packages/lf20_8p4q8mpy.json)
+lottie_json = load_lottieurl(lottie_url)
 
-if lottie_json:
-    st_lottie(lottie_json, speed=1, width=300, height=300, key="hello")
-else:
-    st.error("Gagal memuat animasi Lottie.")
+# Tampilan halaman About
+if option == "About StoichiMath":
+    st.header("Tentang StoichiMath")
+    st.write("Aplikasi ini membantu menghitung stoikiometri dengan cara yang mudah dan interaktif.")
+    
+    if lottie_json:
+        st_lottie(lottie_json, speed=1, width=300, height=300, key="stoichimath_anim")
+    else:
+        st.error("Gagal memuat animasi Lottie.")
+
+    
 if option == "About StoichiMath":
     st.write("Selamat Datang di StoichiMath!")
     st.markdown("""
