@@ -22,27 +22,6 @@ option = st.sidebar.selectbox(
 ) 
 
 # Konten utama berubah sesuai pilihan di sidebar
-def load_lottieurl(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
-
-# URL animasi Lottie
-lottie_url = "https://assets10.lottiefiles.com/packages/lf20_jtbfg2nb.json"
-lottie_json = load_lottieurl(lottie_url)
-
-# Tampilan halaman About
-if option == "About StoichiMath":
-    st.header("Tentang StoichiMath")
-    st.write("Aplikasi ini membantu menghitung stoikiometri dengan cara yang mudah dan interaktif.")
-    
-    if lottie_json:
-        st_lottie(lottie_json, speed=1, width=300, height=300, key="stoichimath_anim")
-    else:
-        st.error("Gagal memuat animasi Lottie.")
-
-    
 if option == "About StoichiMath":
     st.write("Selamat Datang di StoichiMath!")
     st.markdown("""
