@@ -3,8 +3,8 @@ import re
 from sympy import symbols, Eq, solve
 from collections import defaultdict
 
-st.title("🧪 StoichiMath: Aplikasi Perhitungan Stoikiometri")
-st.write("Aplikasi ini membantu menghitung jumlah mol produk dan sisa reaktan berdasarkan persamaan reaksi kimia dan jumlah mol reaktan.")
+st.title("🧪 StoichiMath")
+st.write("Aplikasi ini membantu kamu untuk menghitung jumlah mol produk dan sisa reaktan berdasarkan persamaan reaksi kimia dan jumlah mol reaktan secara otomatis.")
 
 # Fungsi untuk parsing persamaan reaksi
 def parse_reaction(equation):
