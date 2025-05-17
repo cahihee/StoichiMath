@@ -71,3 +71,83 @@ if st.button("Hitung"):
             st.write(f"{chem}: {hasil:.2f} mol")
     except Exception as e:
         st.error(f"Terjadi kesalahan dalam pemrosesan: {e}")
+import streamlit as st
+import re
+from sympy import symbols, Eq, solve
+from sympy.parsing.sympy_parser import parse_expr
+from collections import defaultdict
+
+st.set_page_config(page_title="StoichiMath", layout="centered")
+st.title("🧪 StoichiMath: Aplikasi Perhitungan Stoikiometri")
+
+st.write("Masukkan reaksi kimia yang belum setara (misal: `H2 + O2 -> H2O`) dan jumlah mol salah satu reaktan:")
+
+# Input dari pengguna
+reaction_input = st.text_input("Persamaan Reaksi:", "H2 + O2 -> H2O")
+mol_input = st.number_input("Masukkan mol dari salah satu reaktan:", min_value=0.0, format="%.2f")
+known_species = st.text_input("Sebutkan spesies reaktan yang diketahui jumlah mol-nya:", "H2")
+
+def parse_species(species_str):
+    match = re.match(r"(\d*)\s*([A-Za-z0-9()]+)", species_str.strip())
+    if match:
+        coeff = int(match.group(1)) if match.group(1) else 1
+        return coeff, match.group(2)
+    return 1, species_str.strip()
+
+def parse_equation(equation):
+    lhs, rhs = equation.split("->")
+    reactants = lhs.strip().split("+")
+    products = rhs.strip().split("+")
+    return [parse_species(r) for r in reactants], [parse_species(p) for p in products]
+
+def get_element_count(species):
+    element_pattern = r'([A-Z][a-z]*)(\d*)'
+    counts = defaultdict(int)
+    matches = re.findall(element_pattern, species)
+    for elem, count in matches:
+        counts[elem] += int(count) if count else 1
+    return dict(counts)
+
+def balance_reaction(reactants, products):
+    species = [s for _, s in reactants + products]
+    elements = set()
+    for sp in species:
+        elements.update(get_element_count(sp).keys())
+    
+    coeffs = symbols(f'a:{len(species)}')
+    equations = []
+    
+    for elem in elements:
+        lhs = sum(coeffs[i] * get_element_count(species[i]).get(elem, 0) for i in range(len(reactants)))
+        rhs = sum(coeffs[i+len(reactants)] * get_element_count(species[i+len(reactants)]).get(elem, 0) for i in range(len(products)))
+        equations.append(Eq(lhs, rhs))
+
+    equations.append(Eq(coeffs[0], 1))  # Normalisasi: koefisien reaktan pertama = 1
+    solution = solve(equations, coeffs)
+    return [float(solution.get(c, 1)) for c in coeffs]
+
+# Proses jika ada input reaksi
+if reaction_input:
+    try:
+        reactants, products = parse_equation(reaction_input)
+        all_species = reactants + products
+        coeffs = balance_reaction(reactants, products)
+        
+        st.subheader("✅ Reaksi Setara:")
+        species_str = []
+        for coef, (_, name) in zip(coeffs, all_species):
+            prefix = f"{int(coef)}" if coef != 1 else ""
+            species_str.append(f"{prefix}{name}")
+        
+        st.latex(" + ".join(species_str[:len(reactants)]) + " \\rightarrow " + " + ".join(species_str[len(reactants):]))
+
+        # Hitung stoikiometri
+        if known_species:
+            known_index = [name for _, name in reactants].index(known_species)
+            known_coef = coeffs[known_index]
+            st.subheader("📊 Hasil Stoikiometri:")
+            for i, (coef, (_, name)) in enumerate(all_species):
+                jumlah = (coef / known_coef) * mol_input
+                st.write(f"{name}: {jumlah:.2f} mol")
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat memproses: {e}")
