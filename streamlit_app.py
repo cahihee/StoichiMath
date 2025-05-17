@@ -5,6 +5,8 @@ from collections import defaultdict
 
 st.title("🧪 StoichiMath: Aplikasi Perhitungan Stoikiometri")
 st.write("Aplikasi ini membantu menghitung jumlah mol produk dan sisa reaktan berdasarkan persamaan reaksi kimia dan jumlah mol reaktan.")
+st.set_page_config(page_title="StoichiMath")
+
 
 # Fungsi untuk parsing persamaan reaksi
 def parse_reaction(equation):
@@ -76,11 +78,6 @@ import re
 from sympy import symbols, Eq, solve
 from sympy.parsing.sympy_parser import parse_expr
 from collections import defaultdict
-
-st.set_page_config(page_title="StoichiMath")
-st.title("🧪 StoichiMath: Aplikasi Perhitungan Stoikiometri")
-
-st.write("Masukkan reaksi kimia yang belum setara (misal: `H2 + O2 -> H2O`) dan jumlah mol salah satu reaktan:")
 
 # Input dari pengguna
 reaction_input = st.text_input("Persamaan Reaksi:", "H2 + O2 -> H2O")
