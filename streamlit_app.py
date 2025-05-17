@@ -10,7 +10,7 @@ option = st.sidebar.selectbox(
     [
         "Perhitungan Mol", 
         "Perhitungan Massa", 
-        "perhitungan volume gas", 
+        "Perhitungan Volume Gas", 
         "Perhitungan Jumlah Partikel", 
         "Perbandingan Mol",
     ] 
@@ -107,6 +107,28 @@ if option == "Perbandingan Mol":
             st.latex(f"mol_B = {mol_B:.4f}~mol")
         else:
             st.error("Mol zat A harus lebih dari nol.")
+
+def mol_ke_volume_gas(mol):
+    volume_molar = 22.4  # L/mol pada STP
+    return mol * volume_molar
+
+if option == ("Perhitungan Volume Gas"):
+    st.header("Perhitungan Volume Gas pada STP")
+    mol = st.number_input("Masukkan jumlah mol gas (mol):", min_value=0.0, format="%.4f")
+
+    if st.button("Hitung Volume Gas"):
+        if mol > 0:
+            volume = mol_ke_volume_gas(mol)
+            st.success(f"Volume gas = {volume:.2f} liter")
+
+            # Penyelesaian dan rumus
+            st.markdown("### 🧮 Penyelesaian")
+            st.latex(r"Volume = mol \times 22{,}4~L/mol")
+            st.latex(f"Volume = {mol} \\times 22.4")
+            st.latex(f"Volume = {volume:.2f}~L")
+        else:
+            st.error("Jumlah mol harus lebih dari nol.")
+
 
 
 st.markdown("---")
