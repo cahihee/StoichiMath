@@ -77,7 +77,7 @@ from sympy import symbols, Eq, solve
 from sympy.parsing.sympy_parser import parse_expr
 from collections import defaultdict
 
-st.set_page_config(page_title="StoichiMath", layout="centered")
+st.set_page_config(page_title="StoichiMath", layout="wide")
 st.title("🧪 StoichiMath: Aplikasi Perhitungan Stoikiometri")
 
 st.write("Masukkan reaksi kimia yang belum setara (misal: `H2 + O2 -> H2O`) dan jumlah mol salah satu reaktan:")
