@@ -55,6 +55,12 @@ elif option == "Perhitungan jumlah partikel dari mol":
         partikel = mol_ke_partikel(mol)
         st.success(f"Jumlah partikel = {partikel:.4e} partikel")
 
+        # Penyelesaian
+        st.markdown("### 🧮 Penyelesaian")
+        st.latex(r"N = n \times N_A")
+        st.latex(r"N_A = 6.022 \times 10^{23}")
+        st.latex(f"N = {mol} \\times 6.022 \\times 10^{{23}}")
+        st.latex(f"N = {partikel:.4e}~partikel")
 
 elif option == "Perhitungan perbandingan mol":
     st.header("Perhitungan perbandingan mol")
