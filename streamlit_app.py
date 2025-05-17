@@ -29,7 +29,7 @@ if option == "Perhitungan Massa dan mol":
         # Penyelesaian dan rumus
         st.markdown("🧮 Penyelesaian")
         st.latex(r"n = \frac{massa}{massa\ molar}")
-        st.latex(f"n = \\frac{{{massa}~gram}}{{{massa_molar}~g/mol}}")
+        st.latex(f"n = \\frac{{{massa}~gram}}{{{molar_mass}~g/mol}}")
         st.latex(f"n = {mol:.4f}~mol")
     else:
         st.error("Massa molar harus lebih besar dari nol.")
