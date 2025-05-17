@@ -25,6 +25,14 @@ if option == "Perhitungan Massa dan mol":
     if massa > 0 and molar_mass > 0:
         mol = massa / molar_mass
         st.write(f"Jumlah mol = {mol}")
+        
+        # Penyelesaian dan rumus
+            st.markdown("### 🧮 Penyelesaian")
+            st.latex(r"n = \frac{massa}{massa\ molar}")
+            st.latex(f"n = \\frac{{{massa}~gram}}{{{massa_molar}~g/mol}}")
+            st.latex(f"n = {mol:.4f}~mol")
+        else:
+            st.error("Massa molar harus lebih besar dari nol.")
 
 elif option == "Perhitungan mol dari massa":
     st.header("Perhitungan mol dari massa")
