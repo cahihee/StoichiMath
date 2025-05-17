@@ -17,23 +17,26 @@ option = st.sidebar.selectbox(
 ) 
 
 # Konten utama berubah sesuai pilihan di sidebar
+def massa_ke_mol(massa, massa_molar):
+    return massa / massa_molar
+
 if option == "Perhitungan Mol":
-    st.header("Perhitungan Mol")
-    st.write("kamu bisa menghitung jumlah mol dari massa dan massa molar")
-    massa = st.number_input("Masukkan massa (gram):", min_value=0.0)
-    molar_mass = st.number_input("Masukkan massa molar (g/mol):", min_value=0.0)
+    st.header("Perhitungan Mol dari Massa dan Massa Molar")
+    massa = st.number_input("Masukkan massa zat (gram):", min_value=0.0, format="%.4f")
+    massa_molar = st.number_input("Masukkan massa molar zat (g/mol):", min_value=0.0, format="%.4f")
+
     if st.button("Hitung Mol"):
-        if massa > 0 and molar_mass > 0:
-        mol = massa/molar_mass
-        st.write(f"Jumlah mol = {mol}")
-        
-        # Penyelesaian dan rumus
-        st.markdown("🧮 Penyelesaian")
-        st.latex(r"n = \frac{massa}{massa\ molar}")
-        st.latex(f"n = \\frac{{{massa}~gram}}{{{molar_mass}~g/mol}}")
-        st.latex(f"n = {mol:.4f}~mol")
-    else:
-        st.error("Massa molar harus lebih besar dari nol.")
+        if massa > 0 and massa_molar > 0:
+            mol = massa_ke_mol(massa, massa_molar)
+            st.success(f"Jumlah mol = {mol:.4f} mol")
+
+            # Penyelesaian dan rumus
+            st.markdown("### 🧮 Penyelesaian")
+            st.latex(r"n = \frac{massa}{massa\ molar}")
+            st.latex(f"n = \\frac{{{massa}}}{{{massa_molar}}}")
+            st.latex(f"n = {mol:.4f}~mol")
+        else:
+            st.error("Massa dan massa molar harus lebih dari nol.")
         
 def mol_ke_massa(mol, massa_molar):
     return mol * massa_molar       
