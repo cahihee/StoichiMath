@@ -56,11 +56,9 @@ if option == "Perhitungan Massa":
         else:
             st.error("Jumlah mol dan massa molar harus lebih dari nol.")
 
-
 def mol_ke_partikel(mol):
     avogadro = 6.022e23
     return mol * avogadro
-
 if option == "Perhitungan Jumlah Partikel":
     st.header("Perhitungan Jumlah Partikel")
     mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
