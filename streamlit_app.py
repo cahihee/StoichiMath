@@ -36,15 +36,28 @@ elif option == "Perhitungan mol dari massa":
 
 elif option == "Perhitungan volume gas":
     st.header("Perhitungan volume gas")
-    # Tambah input dan perhitungan lain sesuai kebutuhan
+    mol = st.number_input("Masukkan jumlah mol gas (mol):", min_value=0.0, format="%.4f")
+    if st.button("Hitung Volume Gas"):
+        volume = mol_ke_volume(mol)
+        st.success(f"Volume gas pada STP = {volume:.4f} liter")
+
 
 elif option == "Perhitungan jumlah partikel dari mol":
     st.header("Perhitungan jumlah partikel dari mol")
-    # Tambah input dan perhitungan lain sesuai kebutuhan
+    mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
+    if st.button("Hitung Jumlah Partikel"):
+        partikel = mol_ke_partikel(mol)
+        st.success(f"Jumlah partikel = {partikel:.4e} partikel")
+
 
 elif option == "Perhitungan perbandingan mol":
     st.header("Perhitungan perbandingan mol")
-    # Tambah input dan perhitungan lain sesuai kebutuhan
+    mol_1 = st.number_input("Masukkan jumlah mol zat 1 (mol):", min_value=0.0, format="%.4f")
+    koefisien_1 = st.number_input("Masukkan koefisien reaksi zat 1:", min_value=0.1, format="%.2f")
+    koefisien_2 = st.number_input("Masukkan koefisien reaksi zat 2:", min_value=0.1, format="%.2f")
+    if st.button("Hitung Mol Zat 2"):
+        mol_2 = perbandingan_mol(mol_1, koefisien_1, koefisien_2)
+        st.success(f"Jumlah mol zat 2 = {mol_2:.4f} mol")
 
 # Fungsi untuk parsing persamaan reaksi
 def parse_reaction(equation):
