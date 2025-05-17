@@ -42,6 +42,13 @@ if option == "Perhitungan Massa":
     if st.button("Hitung Massa"):
         massa = mol_ke_massa(mol, massa_molar)
         st.success(f"Massa zat = {massa:.4f} gram")
+        # Penyelesaian dan rumus
+        st.markdown("### 🧮 Penyelesaian")
+        st.latex(r"massa = mol \times massa\ molar")
+        st.latex(f"massa = {mol} \\times {massa_molar}")
+        st.latex(f"massa = {massa:.4f}~gram")
+    else:
+        st.error("Jumlah mol dan massa molar harus lebih dari nol.")
 
 elif option == "Perhitungan volume gas":
     st.header("Perhitungan volume gas")
