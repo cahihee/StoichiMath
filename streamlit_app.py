@@ -57,18 +57,25 @@ if option == "Perhitungan Massa":
             st.error("Jumlah mol dan massa molar harus lebih dari nol.")
 
 
-elif option == "Perhitungan volume gas":
-    st.header("Perhitungan volume gas")
-    mol = st.number_input("Masukkan jumlah mol gas (mol):", min_value=0.0, format="%.4f")
-    if st.button("Hitung Volume Gas"):
-        volume = mol_ke_volume(mol)
-        st.success(f"Volume gas pada STP = {volume:.4f} liter")
+def mol_ke_partikel(mol):
+    avogadro = 6.022e23
+    return mol * avogadro
 
-        # Penyelesaian
-        st.markdown("### 🧮 Penyelesaian")
-        st.latex(r"V = n \times 22.4\ L")
-        st.latex(f"V = {mol} \\times 22.4")
-        st.latex(f"V = {volume:.4f}~L")
+if option == "Perhitungan Jumlah Partikel":
+    st.header("Perhitungan Jumlah Partikel")
+    mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
+    
+    if st.button("Hitung Jumlah Partikel"):
+        if mol > 0:
+            partikel = mol_ke_partikel(mol)
+            st.success(f"Jumlah partikel = {partikel:.2e} partikel")
+
+            st.markdown("### 🧮 Penyelesaian")
+            st.latex(r"jumlah\ partikel = mol \times N_A")
+            st.latex(f"jumlah\ partikel = {mol} \\times 6.022 \\times 10^{{23}}")
+            st.latex(f"jumlah\ partikel = {partikel:.2e}")
+        else:
+            st.error("Jumlah mol harus lebih dari nol.")
 
 
 elif option == "Perhitungan jumlah partikel dari mol":
@@ -95,6 +102,6 @@ elif option == "Perhitungan perbandingan mol":
         st.success(f"Jumlah mol zat 2 = {mol_2:.4f} mol")
 
 st.markdown("---")
-st.caption("🚀 Dibuat dengan ❤️ oleh StoichiMath")
+st.caption("🚀 Dibuat dengan ❤️ oleh Kelompok 11, StoichiMath")
 
 
