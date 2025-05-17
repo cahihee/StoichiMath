@@ -34,12 +34,17 @@ elif option == "Perhitungan mol dari massa":
         massa = mol_ke_massa(mol, massa_molar)
         st.success(f"Massa zat = {massa:.4f} gram")
 
-elif option == "Perhitungan volume gas":
-    st.header("Perhitungan volume gas")
+elif jenis_perhitungan == "Mol ke Volume Gas (STP)":
     mol = st.number_input("Masukkan jumlah mol gas (mol):", min_value=0.0, format="%.4f")
     if st.button("Hitung Volume Gas"):
         volume = mol_ke_volume(mol)
         st.success(f"Volume gas pada STP = {volume:.4f} liter")
+
+        # Penyelesaian
+        st.markdown("### 🧮 Penyelesaian")
+        st.latex(r"V = n \times 22.4\ L")
+        st.latex(f"V = {mol} \\times 22.4")
+        st.latex(f"V = {volume:.4f}~L")
 
 
 elif option == "Perhitungan jumlah partikel dari mol":
