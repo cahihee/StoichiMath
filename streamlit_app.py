@@ -17,7 +17,7 @@ option = st.sidebar.selectbox(
 ) 
 
 # Konten utama berubah sesuai pilihan di sidebar
-if st.button == "Perhitungan Mol":
+if option == "Perhitungan Mol":
     st.header("Perhitungan Mol")
     st.write("kamu bisa menghitung jumlah mol dari massa dan massa molar")
     massa = st.number_input("Masukkan massa (gram):", min_value=0.0)
@@ -34,7 +34,7 @@ if st.button == "Perhitungan Mol":
     else:
         st.error("Massa molar harus lebih besar dari nol.")
 
-elif option == "Perhitungan Massa":
+if option == "Perhitungan Massa":
     st.header("Perhitungan Massa")
     st.write("kamu bisa menghitung Massa dari mol dan massa molar")
     mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
