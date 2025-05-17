@@ -20,6 +20,21 @@ option = st.sidebar.selectbox(
 ) 
 
 # Konten utama berubah sesuai pilihan di sidebar
+if option == "About StoichiMath":
+    st.title("📘 Selamat Datang di StoichiMath")
+    st.markdown("""
+    **StoichiMath** adalah aplikasi interaktif untuk membantu menghitung berbagai konsep dasar stoikiometri:
+
+    🔹 Perhitungan mol, massa, dan massa molar  
+    🔹 Volume gas pada kondisi STP  
+    🔹 Jumlah partikel menggunakan bilangan Avogadro  
+    🔹 Perbandingan mol berdasarkan persamaan reaksi  
+    🔹 Reaktan pembatas  
+    🔹 Yield (hasil reaksi)
+
+    ---
+    Pilih fitur di sidebar kiri untuk mulai menggunakan!
+    """)
 def massa_ke_mol(massa, massa_molar):
     return massa / massa_molar
 
