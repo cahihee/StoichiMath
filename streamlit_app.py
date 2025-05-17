@@ -28,7 +28,11 @@ if option == "Perhitungan Massa dan mol":
 
 elif option == "Perhitungan mol dari massa":
     st.header("Perhitungan mol dari massa")
-    # Tambah input dan perhitungan lain sesuai kebutuhan
+    mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
+    massa_molar = st.number_input("Masukkan massa molar zat (g/mol):", min_value=0.0, format="%.4f")
+    if st.button("Hitung Massa"):
+        massa = mol_ke_massa(mol, massa_molar)
+        st.success(f"Massa zat = {massa:.4f} gram")
 
 elif option == "Perhitungan volume gas":
     st.header("Perhitungan volume gas")
