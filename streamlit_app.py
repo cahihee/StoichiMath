@@ -8,11 +8,14 @@ st.sidebar.title("Perhitungan Stoikiometeri")
 option = st.sidebar.selectbox(
     "Pilih opsi:", 
     [
+        "About StoichiMath",
         "Perhitungan Mol", 
         "Perhitungan Massa", 
         "Perhitungan Volume Gas", 
         "Perhitungan Jumlah Partikel", 
         "Perbandingan Mol",
+        "Limiting Reactant (Reaktan Pembatas)",
+        "Perhitungan Yield",
     ] 
 ) 
 
@@ -132,6 +135,48 @@ if option == ("Perhitungan Volume Gas"):
             st.latex(f"Volume = {volume:.2f}~L")
         else:
             st.error("Jumlah mol harus lebih dari nol.")
+
+if option == "Reaktan Pembatas":
+    st.header("Perhitungan Reaktan Pembatas")
+    mol_A = st.number_input("Mol reaktan A:", min_value=0.0, format="%.4f")
+    mol_B = st.number_input("Mol reaktan B:", min_value=0.0, format="%.4f")
+    koef_A = st.number_input("Koefisien reaktan A:", min_value=1)
+    koef_B = st.number_input("Koefisien reaktan B:", min_value=1)
+
+    if st.button("Tentukan Reaktan Pembatas"):
+        rasio_A = mol_A / koef_A
+        rasio_B = mol_B / koef_B
+
+        if rasio_A < rasio_B:
+            pembatas = "Reaktan A"
+        elif rasio_B < rasio_A:
+            pembatas = "Reaktan B"
+        else:
+            pembatas = "Tidak ada, keduanya seimbang"
+
+        st.success(f"Reaktan pembatas: {pembatas}")
+
+        st.markdown("### 🧮 Penyelesaian")
+        st.latex(f"\\text{{Rasio A}} = \\frac{{{mol_A}}}{{{koef_A}}} = {rasio_A:.4f}")
+        st.latex(f"\\text{{Rasio B}} = \\frac{{{mol_B}}}{{{koef_B}}} = {rasio_B:.4f}")
+        
+if option == "Perhitungan Yield":
+    st.header("Perhitungan Hasil (Yield) Reaksi")
+    hasil_nyata = st.number_input("Masukkan hasil nyata (gram):", min_value=0.0, format="%.4f")
+    hasil_teori = st.number_input("Masukkan hasil teori (gram):", min_value=0.0, format="%.4f")
+
+    if st.button("Hitung Persen Yield"):
+        if hasil_teori > 0:
+            persen_yield = (hasil_nyata / hasil_teori) * 100
+            st.success(f"Persen Yield = {persen_yield:.2f}%")
+
+            st.markdown("### 🧮 Penyelesaian")
+            st.latex(r"yield = \frac{hasil\ nyata}{hasil\ teori} \times 100\%")
+            st.latex(f"yield = \\frac{{{hasil_nyata}}}{{{hasil_teori}}} \\times 100\%")
+            st.latex(f"yield = {persen_yield:.2f}\\%")
+        else:
+            st.error("Hasil teori harus lebih dari nol.")
+
 
 
 
