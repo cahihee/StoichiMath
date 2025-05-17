@@ -1,89 +1,89 @@
 import streamlit as st
-from sympy import symbols, Eq, solve
-from sympy.parsing.sympy_parser import parse_expr
-import re
+from chempy import balance_stoichiometry
+from pint import UnitRegistry
+import matplotlib.pyplot as plt
 
-st.set_page_config(
-    page_title="StoichiMath",
-    page_icon="🧪",
-    layout="centered"
-)
+ureg = UnitRegistry()
 
-st.title("🧪 StoichiMath - Kalkulator Stoikiometri")
+st.set_page_config(page_title="StoichiMath", layout="centered")
 
-st.markdown("Masukkan reaksi kimia, dan StoichiMath akan menyetarakannya serta menghitung berdasarkan stoikiometri.")
+st.title("⚗️ StoichiMath")
+st.subheader("Alat bantu stoikiometri reaksi kimia")
 
-# =====================
-# 🔄 Fungsi Penyamaan
-# =====================
-def balance_equation(equation):
-    try:
-        reactants, products = equation.split("->")
-        reactants = reactants.strip().split("+")
-        products = products.strip().split("+")
-
-        species = [s.strip() for s in reactants + products]
-        elements = set(re.findall(r'[A-Z][a-z]*', equation))
-        element_list = list(elements)
-
-        coeffs = symbols(f'a1:{len(species)+1}')
-        eqs = []
-
-        for element in element_list:
-            lhs = sum(coeffs[i] * species[i].count(element) for i in range(len(reactants)))
-            rhs = sum(coeffs[i+len(reactants)] * species[i+len(reactants)].count(element) for i in range(len(products)))
-            eqs.append(Eq(lhs, rhs))
-
-        eqs.append(Eq(coeffs[0], 1))  # Fix satu koefisien agar hasil tidak trivial
-        sol = solve(eqs, coeffs)
-        if not sol:
-            return "Tidak bisa disetarakan otomatis."
-
-        result = []
-        for i, s in enumerate(species):
-            c = sol.get(coeffs[i], 1)
-            result.append(f"{int(c) if c != 1 else ''}{s}")
-
-        return " + ".join(result[:len(reactants)]) + " -> " + " + ".join(result[len(reactants):])
-
-    except:
-        return "Format salah. Contoh: H2 + O2 -> H2O"
-
-# =====================
-# 🧮 Fungsi Stoikiometri
-# =====================
-def calculate_stoichiometry(mol_input, ratio_from, ratio_to):
-    try:
-        mol = float(mol_input)
-        return mol * (ratio_to / ratio_from)
-    except:
-        return "Input tidak valid."
-
-# =====================
-# 🔧 Input User
-# =====================
-reaction_input = st.text_input("Masukkan persamaan reaksi (contoh: H2 + O2 -> H2O):")
+# Input reaksi
+reaction_input = st.text_input("Masukkan reaksi kimia (contoh: H2 + O2 -> H2O):")
 
 if reaction_input:
-    st.subheader("📘 Persamaan yang Disetarakan:")
-    balanced = balance_equation(reaction_input)
-    st.success(balanced)
+    try:
+        reac_str, prod_str = reaction_input.split("->")
+        reac = {r.strip() for r in reac_str.split('+')}
+        prod = {p.strip() for p in prod_str.split('+')}
+        reac_bal, prod_bal = balance_stoichiometry(reac, prod)
+        
+        st.success("✅ Reaksi Tersetarakan:")
+        st.write(" + ".join(f"{v} {k}" for k, v in reac_bal.items()), "→", 
+                 " + ".join(f"{v} {k}" for k, v in prod_bal.items()))
 
-    st.subheader("🔢 Hitung Stoikiometri:")
-    col1, col2 = st.columns(2)
-    with col1:
-        mol_awal = st.number_input("Mol zat yang diketahui", value=1.0)
-        koef_awal = st.number_input("Koefisien zat diketahui", min_value=1)
-    with col2:
-        koef_tujuan = st.number_input("Koefisien zat ditanya", min_value=1)
+        # Pilih zat diketahui
+        st.markdown("---")
+        st.subheader("🔢 Hitung Stoikiometri")
+        all_species = list(reac_bal.keys()) + list(prod_bal.keys())
+        selected_species = st.selectbox("Pilih zat yang diketahui jumlahnya:", all_species)
+        known_value = st.number_input(f"Masukkan jumlah {selected_species}:", min_value=0.0)
 
-    if st.button("Hitung"):
-        mol_hasil = calculate_stoichiometry(mol_awal, koef_awal, koef_tujuan)
-        st.info(f"Jumlah mol produk/zat tujuan = {mol_hasil} mol")
+        unit = st.selectbox("Satuan:", ["mol", "gram", "partikel", "liter (gas)"])
 
-# =====================
-# ℹ️ Footer
-# =====================
+        # Molar massa dummy (kamu bisa ganti dengan yang lebih akurat)
+        molar_masses = {
+            "H2": 2.02, "O2": 32.00, "H2O": 18.02, "CO2": 44.01, "CH4": 16.04,
+            "NaCl": 58.44, "C6H12O6": 180.16
+        }
+
+        if st.button("Hitung"):
+            try:
+                known_mol = None
+
+                if unit == "mol":
+                    known_mol = known_value
+                elif unit == "gram":
+                    known_mol = known_value / molar_masses[selected_species]
+                elif unit == "partikel":
+                    known_mol = known_value / (6.022e23)
+                elif unit == "liter (gas)":
+                    known_mol = known_value / 22.4
+
+                hasil_mol = {}
+                for species in all_species:
+                    ratio = (prod_bal if species in prod_bal else reac_bal)[species] / \
+                            (prod_bal if selected_species in prod_bal else reac_bal)[selected_species]
+                    mol_target = known_mol * ratio
+                    hasil_mol[species] = mol_target
+
+                st.markdown("### 📊 Hasil Perhitungan")
+                for species, mol in hasil_mol.items():
+                    massa = mol * molar_masses.get(species, 0)
+                    partikel = mol * 6.022e23
+                    volume = mol * 22.4  # gas STP
+                    st.markdown(f"**{species}**:")
+                    st.markdown(f"- Mol: `{mol:.4f}` mol")
+                    st.markdown(f"- Massa: `{massa:.2f}` gram")
+                    st.markdown(f"- Partikel: `{partikel:.2e}`")
+                    st.markdown(f"- Volume (gas): `{volume:.2f}` L")
+
+                # Visualisasi
+                st.markdown("### 📈 Diagram Perbandingan Mol")
+                fig, ax = plt.subplots()
+                ax.bar(hasil_mol.keys(), hasil_mol.values(), color='skyblue')
+                ax.set_ylabel("Mol")
+                st.pyplot(fig)
+
+            except Exception as e:
+                st.error(f"Terjadi kesalahan perhitungan: {e}")
+
+    except Exception as e:
+        st.error(f"❌ Gagal menyetarakan reaksi: {e}")
+
 st.markdown("---")
-st.caption("Dibuat dengan ❤️ oleh StoichiMath | 2025")
+st.caption("🚀 Dibuat dengan ❤️ oleh StoichiMath")
+
 
