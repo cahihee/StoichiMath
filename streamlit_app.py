@@ -12,7 +12,7 @@ option = st.sidebar.selectbox(
         "Perhitungan Massa", 
         "perhitungan volume gas", 
         "Perhitungan Jumlah Partikel", 
-        "perhitungan perbandingan mol",
+        "Perbandingan Mol",
     ] 
 ) 
 
@@ -90,14 +90,24 @@ elif option == "Perhitungan jumlah partikel dari mol":
         st.latex(f"N = {mol} \\times 6.022 \\times 10^{{23}}")
         st.latex(f"N = {partikel:.4e}~partikel")
 
-elif option == "Perhitungan perbandingan mol":
-    st.header("Perhitungan perbandingan mol")
-    mol_1 = st.number_input("Masukkan jumlah mol zat 1 (mol):", min_value=0.0, format="%.4f")
-    koefisien_1 = st.number_input("Masukkan koefisien reaksi zat 1:", min_value=0.1, format="%.2f")
-    koefisien_2 = st.number_input("Masukkan koefisien reaksi zat 2:", min_value=0.1, format="%.2f")
-    if st.button("Hitung Mol Zat 2"):
-        mol_2 = perbandingan_mol(mol_1, koefisien_1, koefisien_2)
-        st.success(f"Jumlah mol zat 2 = {mol_2:.4f} mol")
+if option == "Perbandingan Mol":
+    st.header("Perbandingan Mol Reaktan dan Produk")
+    mol_diketahui = st.number_input("Masukkan jumlah mol zat A (mol):", min_value=0.0, format="%.4f")
+    koefisien_A = st.number_input("Koefisien zat A:", min_value=1)
+    koefisien_B = st.number_input("Koefisien zat B:", min_value=1)
+    
+    if st.button("Hitung Mol B"):
+        if mol_diketahui > 0:
+            mol_B = mol_diketahui * (koefisien_B / koefisien_A)
+            st.success(f"Mol zat B = {mol_B:.4f} mol")
+
+            st.markdown("### 🧮 Penyelesaian")
+            st.latex(r"mol_B = mol_A \times \frac{koef_B}{koef_A}")
+            st.latex(f"mol_B = {mol_diketahui} \\times \\frac{{{koefisien_B}}}{{{koefisien_A}}}")
+            st.latex(f"mol_B = {mol_B:.4f}~mol")
+        else:
+            st.error("Mol zat A harus lebih dari nol.")
+
 
 st.markdown("---")
 st.caption("🚀 Dibuat dengan ❤️ oleh Kelompok 11, StoichiMath")
