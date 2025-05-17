@@ -34,7 +34,7 @@ elif option == "Perhitungan mol dari massa":
         massa = mol_ke_massa(mol, massa_molar)
         st.success(f"Massa zat = {massa:.4f} gram")
 
-elif jenis_perhitungan == "Mol ke Volume Gas (STP)":
+elif option == "Mol ke Volume Gas (STP)":
     mol = st.number_input("Masukkan jumlah mol gas (mol):", min_value=0.0, format="%.4f")
     if st.button("Hitung Volume Gas"):
         volume = mol_ke_volume(mol)
