@@ -17,7 +17,30 @@ option = st.sidebar.selectbox(
     ] 
 ) 
 st.write(f"Kamu memilih: {option}")
+# Konten utama berubah sesuai pilihan di sidebar
+if option == "Perhitungan Massa dan mol":
+    st.header("Perhitungan Massa dan mol")
+    massa = st.number_input("Masukkan massa (gram):", min_value=0.0)
+    molar_mass = st.number_input("Masukkan massa molar (g/mol):", min_value=0.0)
+    if massa > 0 and molar_mass > 0:
+        mol = massa / molar_mass
+        st.write(f"Jumlah mol = {mol}")
 
+elif option == "Perhitungan mol dari massa":
+    st.header("Perhitungan mol dari massa")
+    # Tambah input dan perhitungan lain sesuai kebutuhan
+
+elif option == "Perhitungan volume gas":
+    st.header("Perhitungan volume gas")
+    # Tambah input dan perhitungan lain sesuai kebutuhan
+
+elif option == "Perhitungan jumlah partikel dari mol":
+    st.header("Perhitungan jumlah partikel dari mol")
+    # Tambah input dan perhitungan lain sesuai kebutuhan
+
+elif option == "Perhitungan perbandingan mol":
+    st.header("Perhitungan perbandingan mol")
+    # Tambah input dan perhitungan lain sesuai kebutuhan
 
 # Fungsi untuk parsing persamaan reaksi
 def parse_reaction(equation):
