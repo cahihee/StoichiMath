@@ -24,7 +24,7 @@ if option == "Perhitungan Mol":
     molar_mass = st.number_input("Masukkan massa molar (g/mol):", min_value=0.0)
     if st.button("Hitung Mol"):
         if massa > 0 and molar_mass > 0:
-        mol = massa / molar_mass
+        mol = massa/molar_mass
         st.write(f"Jumlah mol = {mol}")
         
         # Penyelesaian dan rumus
