@@ -40,7 +40,6 @@ def massa_ke_mol(massa, massa_molar):
 
 if option == "Perhitungan Mol":
     st.header("Perhitungan Mol dari Massa dan Massa Molar")
-    st.write ("masukinn massa zat dan massa molar dulu ya, nanti akan kami akan coba hitung!")
     massa = st.number_input("Masukkan massa zat (gram):", min_value=0.0, format="%.4f")
     massa_molar = st.number_input("Masukkan massa molar zat (g/mol):", min_value=0.0, format="%.4f")
 
@@ -61,8 +60,6 @@ def mol_ke_massa(mol, massa_molar):
     return mol * massa_molar       
 if option == "Perhitungan Massa":
     st.header("Perhitungan Massa")
-    st.write ("masukinn jumlah mol dan massa molar dulu ya, nanti akan kami akan coba hitung!")
-    st.write("Kamu bisa menghitung massa dari mol dan massa molar")
     
     mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
     massa_molar = st.number_input("Masukkan massa molar zat (g/mol):", min_value=0.0, format="%.4f")
@@ -85,7 +82,6 @@ def mol_ke_partikel(mol):
     return mol * avogadro
 if option == "Perhitungan Jumlah Partikel":
     st.header("Perhitungan Jumlah Partikel")
-    st.write ("langsung sajs masukin jumlah molnya, nanti akan kami akan coba hitung!")
     mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
     
     if st.button("Hitung Jumlah Partikel"):
