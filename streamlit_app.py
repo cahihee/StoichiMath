@@ -11,7 +11,7 @@ option = st.sidebar.selectbox(
         "Perhitungan Mol", 
         "Perhitungan Massa", 
         "perhitungan volume gas", 
-        "perhitungan jumlah partikel dari mol", 
+        "perhitungan Jumlah Partikel", 
         "perhitungan perbandingan mol",
     ] 
 ) 
