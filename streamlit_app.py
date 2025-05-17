@@ -29,7 +29,7 @@ def load_lottieurl(url):
     return r.json()
 
 # URL animasi Lottie
-lottie_url = "https://assets10.lottiefiles.com/packages/lf20_5ngs2ksb.json"
+lottie_url = "https://app.lottiefiles.com/share/bbf201b5-b407-4e7b-9a4c-3a5ed3891e4d.json"
 lottie_json = load_lottieurl(lottie_url)
 
 # Tampilan halaman About
