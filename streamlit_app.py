@@ -40,6 +40,8 @@ if option == "Perhitungan Massa":
     mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
     massa_molar = st.number_input("Masukkan massa molar zat (g/mol):", min_value=0.0, format="%.4f")
     if st.button("Hitung Massa"):
+        def mol_ke_massa(mol, massa_molar):
+        return mol * massa_molar
         massa = mol_ke_massa(mol, massa_molar)
         st.success(f"Massa zat = {massa:.4f} gram")
         # Penyelesaian dan rumus
