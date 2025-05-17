@@ -14,7 +14,7 @@ option = st.sidebar.selectbox(
         "Perhitungan Volume Gas", 
         "Perhitungan Jumlah Partikel", 
         "Perbandingan Mol",
-        "Limiting Reactant (Reaktan Pembatas)",
+        "Reaktan Pembatas",
         "Perhitungan Yield",
     ] 
 ) 
