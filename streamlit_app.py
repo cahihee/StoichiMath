@@ -31,8 +31,8 @@ if option == "Perhitungan Massa dan mol":
         st.latex(r"n = \frac{massa}{massa\ molar}")
         st.latex(f"n = \\frac{{{massa}~gram}}{{{massa_molar}~g/mol}}")
         st.latex(f"n = {mol:.4f}~mol")
-        else:
-            st.error("Massa molar harus lebih besar dari nol.")
+    else:
+        st.error("Massa molar harus lebih besar dari nol.")
 
 elif option == "Perhitungan mol dari massa":
     st.header("Perhitungan mol dari massa")
