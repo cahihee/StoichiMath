@@ -1,19 +1,10 @@
-# 🎈 Blank app template
+# StoichiMath 🔬
 
-A simple Streamlit app template for you to modify!
+Hallo! Selamat datang di web aplikasi StoichiMath! Apalikasi web yang akan membantu menghitung jumlah mol produk dan sisa reaktan dari persamaan reaksi kimia secara otomatis.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+[LEGGO!!](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)]([https://blank-app-06ualr1aawsh.streamlit.app/](https://stoichimath-06ualr1aawsh.streamlit.app/))
 
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+## Cara Pakai
+1. Masukkan persamaan reaksi (misalnya `2H2 + O2 -> 2H2O`)
+2. Masukkan jumlah mol untuk setiap reaktan
+3. Klik tombol hitung!
