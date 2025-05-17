@@ -4,7 +4,7 @@ from sympy import symbols, Eq, solve
 from collections import defaultdict
 
 st.title("🧪 StoichiMath")
-st.sidebar.title("Perhitungan Stoikiometeri")
+st.sidebar.title("StoichiMath")
 option = st.sidebar.selectbox(
     "Pilih opsi:", 
     [
