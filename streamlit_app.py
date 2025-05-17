@@ -23,7 +23,7 @@ option = st.sidebar.selectbox(
 if option == "About StoichiMath":
     st.write("Selamat Datang di StoichiMath!")
     st.markdown("""
-    **StoichiMath** adalah aplikasi interaktif untuk membantu menghitung berbagai konsep dasar stoikiometri. Aplikasi ini kami rancang untuk membantu mempermudah perhitungan Stoikiomteri:
+    **StoichiMath** adalah aplikasi interaktif untuk membantu menghitung berbagai konsep dasar stoikiometri. Aplikasi ini kami rancang untuk membantu mempermudah perhitungan Stoikiomteri yang juga akan membantu membahas penyelesaian masalahnya:
 
     🔹 Perhitungan mol, massa, dan massa molar  
     🔹 Volume gas pada kondisi STP  
