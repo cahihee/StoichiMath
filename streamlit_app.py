@@ -33,24 +33,27 @@ if option == "Perhitungan Mol":
         st.latex(f"n = {mol:.4f}~mol")
     else:
         st.error("Massa molar harus lebih besar dari nol.")
-
+        
 if option == "Perhitungan Massa":
     st.header("Perhitungan Massa")
-    st.write("kamu bisa menghitung Massa dari mol dan massa molar")
+    st.write("Kamu bisa menghitung massa dari mol dan massa molar")
+    
     mol = st.number_input("Masukkan jumlah mol zat (mol):", min_value=0.0, format="%.4f")
     massa_molar = st.number_input("Masukkan massa molar zat (g/mol):", min_value=0.0, format="%.4f")
+    
     if st.button("Hitung Massa"):
-        def mol_ke_massa(mol, massa_molar):
-        return mol * massa_molar
-        massa = mol_ke_massa(mol, massa_molar)
-        st.success(f"Massa zat = {massa:.4f} gram")
-        # Penyelesaian dan rumus
-        st.markdown("### 🧮 Penyelesaian")
-        st.latex(r"massa = mol \times massa\ molar")
-        st.latex(f"massa = {mol} \\times {massa_molar}")
-        st.latex(f"massa = {massa:.4f}~gram")
-    else:
-        st.error("Jumlah mol dan massa molar harus lebih dari nol.")
+        if mol > 0 and massa_molar > 0:
+            massa = mol_ke_massa(mol, massa_molar)
+            st.success(f"Massa zat = {massa:.4f} gram")
+
+            # Penyelesaian
+            st.markdown("### 🧮 Penyelesaian")
+            st.latex(r"massa = mol \times massa\ molar")
+            st.latex(f"massa = {mol} \\times {massa_molar}")
+            st.latex(f"massa = {massa:.4f}~gram")
+        else:
+            st.error("Jumlah mol dan massa molar harus lebih dari nol.")
+
 
 elif option == "Perhitungan volume gas":
     st.header("Perhitungan volume gas")
