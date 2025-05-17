@@ -8,7 +8,7 @@ st.write("Aplikasi ini membantu kamu untuk menghitung jumlah mol produk dan sisa
 st.sidebar.title("Perhitungan Stoikiometeri")
 option = st.sidebar.selectbox(
     "Pilih opsi:", 
-    ["Perhitungan Massa dan mol", "Perhitungan mol dari massa", "perhitungan volume gas", "perhitungan jumlah pertikel dari mol", "perhitungan perbandingan mol" ]
+    ["Perhitungan Massa dan mol", "Perhitungan mol dari massa", "perhitungan volume gas", "perhitungan jumlah pertikel dari mol", "perhitungan perbandingan mol",]
 st.write(f"Kamu memilih: {option}"))
 
 
