@@ -18,7 +18,7 @@ option = st.sidebar.selectbox(
         "Perbandingan Mol",
         "Reaktan Pembatas",
         "Perhitungan Yield",
-        "About StoichiMath",
+        "About Stoichiometry",
     ] 
 ) 
 
@@ -195,7 +195,7 @@ if option == "Perhitungan Yield":
             st.error("Hasil teori harus lebih dari nol.")
 
 # Konten utama berubah sesuai pilihan di sidebar
-if option == "About StoichiMath":
+if option == "About Stoichiometry":
     st.write("**Tentang Aplikasi StoichiMath**")
     st.markdown("""
 Stoikiometri adalah cabang kimia yang mempelajari dan menghitung hubungan kuantitatif antara reaktan dan produk dalam reaksi kimia.
