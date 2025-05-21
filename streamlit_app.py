@@ -202,12 +202,7 @@ if option == "About StoichiMath":
     Fungsinya adalah untuk menentukan jumlah zat (massa, mol, volume, atau jumlah partikel) yang terlibat dalam suatu reaksi kimia,
     serta untuk memprediksi hasil reaksi dan memahami komposisi senyawa. Aplikasi ini dirancang untuk membantu mempermudah perhitungan
     sekaligus membahas penyelesaian masalah terkait stoikiometri.
-    🔹 Perhitungan mol, massa, dan massa molar  
-    🔹 Volume gas pada kondisi STP  
-    🔹 Jumlah partikel menggunakan bilangan Avogadro  
-    🔹 Perbandingan mol berdasarkan persamaan reaksi  
-    🔹 Reaktan pembatas  
-    🔹 Yield (hasil reaksi)
+    """)
 
     st.markdown("### 📚 Referensi:")
 
@@ -224,10 +219,9 @@ if option == "About StoichiMath":
         st.link_button("🌐 Klik disini!", "https://www.sciencedirect.com/topics/physics-and-astronomy/stoichiometry")
 
 
-    ---
+    st.markdown("""---
     _Dikembangkan dengan Streamlit & Python_
     """)
-
 
 
 
