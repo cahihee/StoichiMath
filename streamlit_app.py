@@ -196,14 +196,13 @@ if option == "Perhitungan Yield":
 
 # Konten utama berubah sesuai pilihan di sidebar
 if option == "About StoichiMath":
-    st.write("Tentang Aplikasi StoichiMath!")
+    st.write("**Tentang Aplikasi StoichiMath**")
     st.markdown("""
-    Stoikiometri adalah cabang kimia yang mempelajari dan menghitung hubungan kuantitatif antara reaktan dan produk dalam reaksi kimia.
-    Fungsinya adalah untuk menentukan jumlah zat (massa, mol, volume, atau jumlah partikel) yang terlibat dalam suatu reaksi kimia,
-    serta untuk memprediksi hasil reaksi dan memahami komposisi senyawa. Aplikasi ini dirancang untuk membantu mempermudah perhitungan
-    sekaligus membahas penyelesaian masalah terkait stoikiometri.
-    """)
-
+Stoikiometri adalah cabang kimia yang mempelajari dan menghitung hubungan kuantitatif antara reaktan dan produk dalam reaksi kimia.
+Fungsinya adalah untuk menentukan jumlah zat (massa, mol, volume, atau jumlah partikel) yang terlibat dalam suatu reaksi kimia,
+serta untuk memprediksi hasil reaksi dan memahami komposisi senyawa. Aplikasi ini dirancang untuk membantu mempermudah perhitungan
+sekaligus membahas penyelesaian masalah terkait stoikiometri.
+""")
     st.markdown("### 📚 Referensi:")
 
     col1, col2 = st.columns([0.1, 0.5])
