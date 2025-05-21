@@ -206,13 +206,13 @@ if option == "About StoichiMath":
 
     st.markdown("### 📚 Referensi:")
 
-    col1, col2 = st.columns([0.1, 0.7])
+    col1, col2 = st.columns([0.1, 0.5])
     with col1:
         st.markdown("Wikipedia:")
     with col2:
         st.link_button("🌐 Klik disini!", "https://id.wikipedia.org/wiki/Stoikiometri")
 
-    col3, col4 = st.columns([0.1, 0.7])
+    col3, col4 = st.columns([0.1, 0.5])
     with col3:
         st.markdown("Jurnal Sciencedirect:")
     with col4:
