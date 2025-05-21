@@ -208,21 +208,19 @@ if option == "About StoichiMath":
 
     col1, col2 = st.columns([0.1, 0.5])
     with col1:
-        st.markdown("Wikipedia:")
+        st.markdown("**Wikipedia:**")
     with col2:
         st.link_button("🌐 Klik disini!", "https://id.wikipedia.org/wiki/Stoikiometri")
 
     col3, col4 = st.columns([0.1, 0.5])
     with col3:
-        st.markdown("Jurnal Sciencedirect:")
+        st.markdown("**Jurnal Sciencedirect:**")
     with col4:
         st.link_button("🌐 Klik disini!", "https://www.sciencedirect.com/topics/physics-and-astronomy/stoichiometry")
-
 
     st.markdown("""---
     Dikembangkan dengan Streamlit & Python.
     """)
-
 
 
 
