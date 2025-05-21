@@ -10,7 +10,7 @@ st.sidebar.title("StoichiMath")
 option = st.sidebar.selectbox(
     "Pilih opsi:", 
     [
-        "About StoichiMath",
+        "Main Menu",
         "Perhitungan Mol", 
         "Perhitungan Massa", 
         "Perhitungan Volume Gas", 
@@ -18,11 +18,12 @@ option = st.sidebar.selectbox(
         "Perbandingan Mol",
         "Reaktan Pembatas",
         "Perhitungan Yield",
+        "About StoichiMath",
     ] 
 ) 
 
 # Konten utama berubah sesuai pilihan di sidebar
-if option == "About StoichiMath":
+if option == "Main Menu":
     st.write("Selamat Datang di StoichiMath!")
     st.markdown("""
     **StoichiMath** adalah aplikasi interaktif untuk membantu menghitung berbagai konsep dasar stoikiometri. Aplikasi ini kami rancang untuk membantu mempermudah perhitungan Stoikiometri yang juga akan membahas penyelesaian masalahnya:
@@ -192,6 +193,41 @@ if option == "Perhitungan Yield":
             st.latex(f"yield = {persen_yield:.2f}\\%")
         else:
             st.error("Hasil teori harus lebih dari nol.")
+
+# Konten utama berubah sesuai pilihan di sidebar
+if option == "About StoichiMath":
+    st.write("Tentang Aplikasi StoichiMath!")
+    st.markdown("""
+    Stoikiometri adalah cabang kimia yang mempelajari dan menghitung hubungan kuantitatif antara reaktan dan produk dalam reaksi kimia.
+    Fungsinya adalah untuk menentukan jumlah zat (massa, mol, volume, atau jumlah partikel) yang terlibat dalam suatu reaksi kimia,
+    serta untuk memprediksi hasil reaksi dan memahami komposisi senyawa. Aplikasi ini dirancang untuk membantu mempermudah perhitungan
+    sekaligus membahas penyelesaian masalah terkait stoikiometri.
+    🔹 Perhitungan mol, massa, dan massa molar  
+    🔹 Volume gas pada kondisi STP  
+    🔹 Jumlah partikel menggunakan bilangan Avogadro  
+    🔹 Perbandingan mol berdasarkan persamaan reaksi  
+    🔹 Reaktan pembatas  
+    🔹 Yield (hasil reaksi)
+
+    st.markdown("### 📚 Referensi:")
+
+    col1, col2 = st.columns([0.7, 0.3])
+    with col1:
+        st.markdown("**Wikipedia")
+    with col2:
+        st.link_button("🌐 Klik disini!", "https://id.wikipedia.org/wiki/Stoikiometri")
+
+    col3, col4 = st.columns([0.7, 0.3])
+    with col3:
+        st.markdown("**Jurnal Sciencedirect")
+    with col4:
+        st.link_button("🌐 Klik disini!", "https://www.sciencedirect.com/topics/physics-and-astronomy/stoichiometry")
+
+
+    ---
+    _Dikembangkan dengan Streamlit & Python_
+    """)
+
 
 
 
